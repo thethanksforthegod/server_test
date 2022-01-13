@@ -19,7 +19,7 @@ f.close()
 while True:
     clientsocket,addr = serversocket.accept()      
     f=open("s.txt","w")
-    f.write(addr)
+    f.write(addr[0])
     f.close()
     s='connected'
     clientsocket.send(s.encode('ascii'))
