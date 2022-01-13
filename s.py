@@ -1,14 +1,5 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Wed Oct 27 14:07:51 2021
-
-@author: Administrator
-"""
-
 import socket                                         
-import time
 
-# create a socket object
 serversocket = socket.socket(
 	        socket.AF_INET, socket.SOCK_STREAM) 
 
@@ -19,16 +10,18 @@ port = 5556
 
 # bind to the port
 serversocket.bind((host, port))                                  
+serversocket.listen(1) 
 
-# queue up to 5 requests
-serversocket.listen(5)                                           
 print('waitiiiing')
+f=open("s.txt","w")
+f.write("no")
+f.close()
 while True:
-    # establish a connection
     clientsocket,addr = serversocket.accept()      
-
-    print("Got a connection from %s" % str(addr))
-    currentTime = time.ctime(time.time()) + "\r\n"
-    s='hhhhhhhhhhhhhhhhhhhhhhhhhhh'
+    f=open("s.txt","w")
+    f.write(addr)
+    f.close()
+    s='connected'
     clientsocket.send(s.encode('ascii'))
     clientsocket.close()
+    break
